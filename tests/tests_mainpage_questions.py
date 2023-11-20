@@ -2,7 +2,6 @@ from locators import MainPageLocators
 from pages.main_page import MainPageSamokat
 from data import TextOfTheAnswers
 import pytest
-import time
 from conftest import browser
 
 
@@ -19,10 +18,8 @@ class TestQuestionsMainPage:
                               [7, TextOfTheAnswers.answer_7_text]
                               ])
     def test_question_get_correct_answer(self, browser, number, expected_answer):
-        last_element = browser.find_element(*MainPageLocators.QUESTION_LOCATOR_7)
-        browser.execute_script("arguments[0].scrollIntoView();", last_element)
+        MainPageSamokat(browser).get_cookies(MainPageLocators.BUTT_COOKIES)
+        MainPageSamokat(browser).scroll(MainPageLocators.QUESTION_LOCATOR_7)
         MainPageSamokat(browser).get_question(number)
-
         answer = MainPageSamokat(browser).get_answer(number)
-        time.sleep(2)
         assert answer == expected_answer

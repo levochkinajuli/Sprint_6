@@ -19,5 +19,15 @@ class BasePage:
                 print(f"Ошибка при клике на элемент: {e}")
 
     def get_text(self, locator):
-        return WebDriverWait(self.driver, 2).until(
+        return WebDriverWait(self.driver, 3).until(
             expected_conditions.visibility_of_element_located(locator)).text
+
+    def scroll(self, locator):
+        last_element = self.find_element(locator)
+        return self.driver.execute_script("arguments[0].scrollIntoView();", last_element)
+
+    def get_cookies(self, locator):
+        element = WebDriverWait(self.driver, 3).until(
+            expected_conditions.visibility_of_element_located(locator))
+        return element.click()
+

@@ -6,10 +6,6 @@ from pages.base_page import BasePage
 
 
 class MainPageSamokat(BasePage):
-    @allure.step('Принимаем куки')
-    def get_cookies(self):
-        return WebDriverWait(self.driver, 2).until(
-            expected_conditions.visibility_of_element_located(MainPageLocators.BUTT_COOKIES)).click()
 
     @allure.step('Нажимаем на вопрос')
     def get_question(self, number):
